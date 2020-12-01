@@ -7,6 +7,12 @@
 #include "sub.h"
 #include "rand.h"
 #include "mult.h"
-int main(){
-    
+#include "factory.h"
+
+int main(int argc, char * argv[]){	
+	Factory* factory = new Factory();
+	Base* conversion = factory->parse(argv,argc);
+	std::cout<<"Results: "<<conversion->evaluate()<<endl;
+	std::cout<<"Stringify: "<<conversion->stringify()<<endl;
+	   
 }
