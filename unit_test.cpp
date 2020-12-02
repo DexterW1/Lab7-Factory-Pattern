@@ -80,6 +80,54 @@ TEST(FactoryTest, LongExpressionPt1){
         EXPECT_EQ(conversion->evaluate(),10);
 
 }
+TEST(FactoryTest, LongExpressionPt2){
+        char* test_val [15];
+        test_val[0] = "3";
+        test_val[1] = "*";
+        test_val[2] = "10";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,3);
+        EXPECT_EQ(conversion->evaluate(),30);
+
+}
+
+TEST(FactoryTest, LongExpressionPt3){
+        char* test_val [10];
+        test_val[0] = "4";
+        test_val[1] = "+";
+        test_val[2] = "4";
+        test_val[3] = "-";
+        test_val[4] = "4";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,5);
+        EXPECT_EQ(conversion->evaluate(), 4);
+}
+
+TEST(FactoryTest, LongExpressionPt4){
+        char* test_val [11];
+        test_val[0] = "2";
+        test_val[1] = "*";
+        test_val[2] = "0";
+        test_val[3] = "+";
+        test_val[4] = "3";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,5);
+        EXPECT_EQ(conversion->evaluate(), 3);
+}
+TEST(FactoryTest, LongExpressionPt5){
+        char* test_val [10];
+        test_val[0] = "5";
+        test_val[1] = "+";
+        test_val[2] = "5";
+        test_val[3] = "+";
+        test_val[4] = "5";
+        test_val[5] = "+";
+        test_val[6] = "5";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,7);
+        EXPECT_EQ(conversion->evaluate(), 20);
+}
+
 
 
 int main(int argc, char **argv) {
