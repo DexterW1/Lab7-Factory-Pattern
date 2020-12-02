@@ -80,8 +80,128 @@ TEST(FactoryTest, LongExpressionPt1){
         EXPECT_EQ(conversion->evaluate(),10);
 
 }
+TEST(FactoryTest, LongExpressionPt2){
+        char* test_val [15];
+        test_val[0] = "3";
+        test_val[1] = "*";
+        test_val[2] = "10";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,3);
+        EXPECT_EQ(conversion->evaluate(),30);
+
+}
+
+TEST(FactoryTest, LongExpressionPt3){
+        char* test_val [10];
+        test_val[0] = "4";
+        test_val[1] = "+";
+        test_val[2] = "4";
+        test_val[3] = "-";
+        test_val[4] = "4";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,5);
+        EXPECT_EQ(conversion->evaluate(), 4);
+}
+
+TEST(FactoryTest, LongExpressionPt4){
+        char* test_val [11];
+        test_val[0] = "2";
+        test_val[1] = "*";
+        test_val[2] = "0";
+        test_val[3] = "+";
+        test_val[4] = "3";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,5);
+        EXPECT_EQ(conversion->evaluate(), 3);
+}
+TEST(FactoryTest, LongExpressionPt5){
+        char* test_val [10];
+        test_val[0] = "5";
+        test_val[1] = "+";
+        test_val[2] = "5";
+        test_val[3] = "+";
+        test_val[4] = "5";
+        test_val[5] = "+";
+        test_val[6] = "5";
+        Factory* factory = new Factory();
+        Base* conversion = factory->parse(test_val,7);
+        EXPECT_EQ(conversion->evaluate(), 20);
+}
 
 
+/*
+TEST(FactoryTest, validity1){
+    char* test_val[3];
+    test_val[0] = "-";
+    test_val[1] = "1";
+    test_val[2] = "2";
+
+    Factory* factory = new Factory();
+    Base* conversion = factory->parse(test_val,3);
+    EXPECT_EQ(conversion->evaluate(), nullptr);
+  
+}
+
+*/
+TEST(FactoryTest, validity1){
+    char* test_val[1];
+    test_val[0] = "-";
+
+    Factory* factory = new Factory();
+    bool check = factory->check_valid(test_val,1);
+    EXPECT_EQ(check, false);
+  
+}
+
+
+
+TEST(FactoryTest, validity2){
+    char* test_val[1];
+    test_val[0] = "1";
+
+    Factory* factory = new Factory();
+    bool check = factory->check_valid(test_val,1);
+    EXPECT_EQ(check, true);
+
+}
+
+
+TEST(FactoryTest, incorrectTest){
+    char* test_val[1];
+    test_val[0] = "-";
+
+    Factory* factory = new Factory();
+    Base* conversion = factory->parse(test_val,1);
+    EXPECT_TRUE(conversion == nullptr);
+  
+}
+
+TEST(FactoryTest, incorrectTest2){
+    char* test_val[4];
+    test_val[0] = "1";
+    test_val[1] = "3";
+    test_val[2] = "5";
+    test_val[3] = "1";
+
+    Factory* factory = new Factory();
+    Base* conversion = factory->parse(test_val,4);
+    EXPECT_TRUE(conversion == nullptr);
+  
+}
+
+
+TEST(FactoryTest, validity3){
+    char* test_val[4];
+    test_val[0] = "1";
+    test_val[1] = "3";
+    test_val[2] = "5";
+    test_val[3] = "1";
+
+    Factory* factory = new Factory();
+    bool check = factory->check_valid(test_val,4);
+    EXPECT_EQ(check, false);
+  
+}
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
