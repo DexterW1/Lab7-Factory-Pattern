@@ -16,7 +16,7 @@ TEST(FactoryTest, BasicAddition){
 	Factory* factory = new Factory();
 	Base* conversion = factory->parse(test_val,3);
         ASSERT_NE(conversion, nullptr);
-        EXPECT_EQ(conversion->stringify(), "(8.000000)+(2.000000)");
+        EXPECT_EQ(conversion->stringify(), "8.000000 + 2.000000");
 	EXPECT_EQ(conversion->evaluate(),10);
 
 }
@@ -28,7 +28,7 @@ TEST(FactoryTest, BasicSubtraction){
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,3);
 	ASSERT_NE(conversion, nullptr);
-	EXPECT_EQ(conversion->stringify(), "(4.000000)-(2.000000)");
+	EXPECT_EQ(conversion->stringify(), "4.000000 - 2.000000");
         EXPECT_EQ(conversion->evaluate(),2);
 
 }
@@ -40,7 +40,7 @@ TEST(FactoryTest, BasicMultiplication){
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,3);
         ASSERT_NE(conversion, nullptr);
-        EXPECT_EQ(conversion->stringify(), "(9.000000)*(2.000000)");
+        EXPECT_EQ(conversion->stringify(), "9.000000 * 2.000000");
         EXPECT_EQ(conversion->evaluate(),18);
 
 }
@@ -52,7 +52,7 @@ TEST(FactoryTest, BasicDivision){
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,3);
         ASSERT_NE(conversion, nullptr);
-        EXPECT_EQ(conversion->stringify(), "(10.000000)/(5.000000)");
+        EXPECT_EQ(conversion->stringify(), "10.000000 / 5.000000");
         EXPECT_EQ(conversion->evaluate(),2);
 
 }
@@ -64,7 +64,7 @@ TEST(FactoryTest, BasicPower){
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,3);
         ASSERT_NE(conversion, nullptr);
-        EXPECT_EQ(conversion->stringify(), "(8.000000)^(2.000000)");
+        EXPECT_EQ(conversion->stringify(), "8.000000 ^ 2.000000");
         EXPECT_EQ(conversion->evaluate(),64);
 
 }

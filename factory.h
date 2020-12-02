@@ -63,7 +63,7 @@ public:
     Base* parse(char* input[], int length){
         if(check_valid(input,length) == false){
             cout<<"Invalid input returning NULL"<<endl;
-            return NULL;
+            return nullptr;
         }
         int i=0;
         string stringtemp;
