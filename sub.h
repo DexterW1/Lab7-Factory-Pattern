@@ -11,7 +11,7 @@ class Sub: public Operate {
 			return left->evaluate() - right->evaluate();
 		}
 		std::string stringify(){
-			return "(" + left->stringify() +")" + "-"+ "(" + right->stringify() + ")";
+			return left->stringify() + " - " + right->stringify();
 		}
 };
 #endif //__SUB_H__  

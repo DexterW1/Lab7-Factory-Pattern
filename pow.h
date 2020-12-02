@@ -18,7 +18,7 @@ class Pow: public Operate {
 			}
 		}
 		std::string stringify(){
-			return "(" + left->stringify() +")" + "^" +  "(" + right->stringify() + ")";
+			return left->stringify() + " ^ " + right->stringify();
 		}
 };
 #endif //__POW_H__  
