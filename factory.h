@@ -88,7 +88,10 @@ public:
         int change = 0;
         int op_change = 0;
         int i=1;
+	if(!isdigit(*input[0])){return false;}
         while(i<length){
+
+	    //if(!isdigit(*input[1])) { return false;}
             if(isdigit(*input[i] != 1)){
                 return false;
             }
