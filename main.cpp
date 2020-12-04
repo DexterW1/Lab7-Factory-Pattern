@@ -10,6 +10,9 @@
 #include "factory.h"
 
 int main(int argc, char * argv[]){	
+	for(int i=0; i<argc; i++){
+		std::cout<<"arguemnts["<<i<<"]: "<<*argv[i]<<endl;
+	}
 	Factory* factory = new Factory();
 	Base* conversion = factory->parse(argv,argc);
 	if(factory->check_valid(argv,argc) == false){
