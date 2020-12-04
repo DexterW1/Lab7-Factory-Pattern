@@ -9,13 +9,12 @@
 #include "mult.h"
 #include "factory.h"
 
-int main(int argc, char * argv[]){	
-	for(int i=0; i<argc; i++){
-		std::cout<<"arguemnts["<<i<<"]: "<<*argv[i]<<endl;
-	}
+int main(int argc, char * argv[]){
+	std::cout<<"Length: "<<argc<<endl;
 	Factory* factory = new Factory();
 	Base* conversion = factory->parse(argv,argc);
-	if(factory->check_valid(argv,argc) == false){
+	if(factory->check_valid_main(argv,argc) == false){
+		std::cout<<"Auto Quiting program return 0"<<endl;
 		return 0;
 	}
 	std::cout<<"Results: "<<conversion->evaluate()<<endl;

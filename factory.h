@@ -61,7 +61,7 @@ public:
 
     };
     Base* parse(char* input[], int length){
-        if(check_valid(input,length) == false){
+        if(check_valid_main(input,length) == false){
             cout<<"Invalid input returning NULL"<<endl;
             return nullptr;
         }
@@ -88,7 +88,7 @@ public:
         int change = 0;
         int op_change = 0;
         int i=1;
-	if(!isdigit(*input[0])){return false;}
+	if(!isdigit(*input[0])){return false;};
         while(i<length){
 
 	    //if(!isdigit(*input[1])) { return false;}
@@ -115,8 +115,37 @@ public:
 
         return true;
 
-    }
-
+    };
+    bool check_valid_main(char* input[], int length){
+        int change = 0;
+        int op_change = 0;
+        int i=1;
+	if(length == 2){
+		return false;
+	}
+        while(i<length){
+		if(isdigit(*input[i]!= 1)){
+			return false;
+		}
+		if(isdigit(*input[i]) && i%2 != 0){
+			change++;
+		}
+		else if((*input[i]== '+' || *input[i] == '-' || *input[i] == '/' || *input[i] == '*' ||*input[i]=='^') && i% 2== 0){
+			op_change++;
+		}
+		else if(isdigit(*input[i])==1 && isdigit(*input[i+1])==1){
+			return false;
+		}	
+		else if(isdigit(*input[i]) == 0 && isdigit(*input[i+1]) == 0){
+			return false;
+		}
+		i++;
+	}
+	if(op_change > change){
+		return false;
+	}
+	return true;
+	
+     };
 };
-
-#endif // FACTORY_H
+#endif //_FACTORY_H_

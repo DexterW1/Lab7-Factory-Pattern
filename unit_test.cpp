@@ -174,11 +174,12 @@ TEST(FactoryTest, validity2){
 
 
 TEST(FactoryTest, incorrectTest){
-    char* test_val[1];
+    char* test_val[3];
     test_val[0] = "-";
-
+    test_val[1] = "*";
+    test_val[2] = "+";
     Factory* factory = new Factory();
-    Base* conversion = factory->parse(test_val,1);
+    Base* conversion = factory->parse(test_val,3);
     EXPECT_TRUE(conversion == nullptr);
   
 }
