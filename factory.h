@@ -52,7 +52,7 @@ public:
            break;
 
         default:
-            results = NULL;
+            results = nullptr;
             break;
 
         }

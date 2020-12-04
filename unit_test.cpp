@@ -69,38 +69,58 @@ TEST(FactoryTest, BasicPower){
 
 }
 TEST(FactoryTest, LongExpressionPt1){
-	//also need to check for invalid i think
-	//need to check for at least 5 long expression so like test val so be around 12 for each
-        char* test_val [12];
+        char* test_val [7];
         test_val[0] = "8";
         test_val[1] = "+";
         test_val[2] = "2";
+	test_val[3] = "/";
+	test_val[4] = "5";
+	test_val[5] = "^";
+	test_val[6] = "3";
         Factory* factory = new Factory();
-        Base* conversion = factory->parse(test_val,3);
-        EXPECT_EQ(conversion->evaluate(),10);
+        Base* conversion = factory->parse(test_val,7);
+	ASSERT_NE(conversion, nullptr);
+	EXPECT_EQ(conversion->stringify(),"8.000000 + 2.000000 / 5.000000 ^ 3.000000");
+        EXPECT_EQ(conversion->evaluate(),8);
 
 }
 TEST(FactoryTest, LongExpressionPt2){
-        char* test_val [15];
-        test_val[0] = "3";
-        test_val[1] = "*";
-        test_val[2] = "10";
+        char* test_val [9];
+	test_val[0] = "100";
+	test_val[1] = "-";
+	test_val[2] = "50";
+	test_val[3] = "/";
+	test_val[4] = "25";
+	test_val[5] = "*";
+	test_val[6] = "5";
+	test_val[7] = "^";
+	test_val[8] = "2";
         Factory* factory = new Factory();
-        Base* conversion = factory->parse(test_val,3);
-        EXPECT_EQ(conversion->evaluate(),30);
+        Base* conversion = factory->parse(test_val,9);
+	EXPECT_EQ(conversion->stringify(),"100.000000 - 50.000000 / 25.000000 * 5.000000 ^ 2.000000");
+        EXPECT_EQ(conversion->evaluate(),100);
 
 }
 
 TEST(FactoryTest, LongExpressionPt3){
+
         char* test_val [10];
         test_val[0] = "4";
         test_val[1] = "+";
         test_val[2] = "4";
         test_val[3] = "-";
         test_val[4] = "4";
+	test_val[5] = "*";
+	test_val[6] = "4";
+	test_val[7] = "^";
+	test_val[8] = "1";
+	test_val[9] = "/";
+	test_val[10] = "4";
         Factory* factory = new Factory();
-        Base* conversion = factory->parse(test_val,5);
-        EXPECT_EQ(conversion->evaluate(), 4);
+        Base* conversion = factory->parse(test_val,10);
+	EXPECT_EQ(conversion->stringify(),"4.000000 + 4.000000 - 4.000000 * 4.000000 ^ 1.000000 / 4.000000");
+        EXPECT_EQ(conversion->evaluate(),4);
+
 }
 
 TEST(FactoryTest, LongExpressionPt4){
@@ -112,6 +132,7 @@ TEST(FactoryTest, LongExpressionPt4){
         test_val[4] = "3";
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,5);
+	EXPECT_EQ(conversion->stringify(),"2.000000 * 0.000000 + 3.000000");
         EXPECT_EQ(conversion->evaluate(), 3);
 }
 TEST(FactoryTest, LongExpressionPt5){
@@ -125,24 +146,10 @@ TEST(FactoryTest, LongExpressionPt5){
         test_val[6] = "5";
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,7);
+	EXPECT_EQ(conversion->stringify(),"5.000000 + 5.000000 + 5.000000 + 5.000000");
         EXPECT_EQ(conversion->evaluate(), 20);
 }
 
-
-/*
-TEST(FactoryTest, validity1){
-    char* test_val[3];
-    test_val[0] = "-";
-    test_val[1] = "1";
-    test_val[2] = "2";
-
-    Factory* factory = new Factory();
-    Base* conversion = factory->parse(test_val,3);
-    EXPECT_EQ(conversion->evaluate(), nullptr);
-  
-}
-
-*/
 TEST(FactoryTest, validity1){
     char* test_val[1];
     test_val[0] = "-";
