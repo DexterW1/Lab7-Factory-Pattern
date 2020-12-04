@@ -68,16 +68,22 @@ TEST(FactoryTest, BasicPower){
         EXPECT_EQ(conversion->evaluate(),64);
 
 }
-TEST(FactoryTest, LongExpressionPt1){
-	//also need to check for invalid i think
-	//need to check for at least 5 long expression so like test val so be around 12 for each
+TEST(FactoryTest, LongExpression){
         char* test_val [12];
-        test_val[0] = "8";
+        test_val[0] = "20";
         test_val[1] = "+";
-        test_val[2] = "2";
+        test_val[2] = "4";
+	test_val[3] = "/";
+	test_val[4] = "2";
+	test_val[5] = "*";
+	test_val[6] = "3";
+	test_val[7] = "-";
+	test_val[8] = "10";
         Factory* factory = new Factory();
-        Base* conversion = factory->parse(test_val,3);
-        EXPECT_EQ(conversion->evaluate(),10);
+        Base* conversion = factory->parse(test_val,12);
+	ASSERT_NE(conversion, NULL);
+	EXPECT_EQ(conversion->stringify(),"20.000000 + 4.000000 / 2.000000 * 3.000000 - 10.000000");
+        EXPECT_EQ(conversion->evaluate(),26);
 
 }
 
