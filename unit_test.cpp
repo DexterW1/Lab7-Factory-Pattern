@@ -81,7 +81,7 @@ TEST(FactoryTest, LongExpression){
 	test_val[8] = "10";
         Factory* factory = new Factory();
         Base* conversion = factory->parse(test_val,12);
-	ASSERT_NE(conversion, NULL);
+	ASSERT_NE(conversion, nullptr);
 	EXPECT_EQ(conversion->stringify(),"20.000000 + 4.000000 / 2.000000 * 3.000000 - 10.000000");
         EXPECT_EQ(conversion->evaluate(),26);
 
